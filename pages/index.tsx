@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 import html from 'remark-html';
 
 export const getStaticProps = async (context: any) => {
-    const date = useDate();
+    const date = dayjs();
     const monthNum = parseInt(date.format('M'));
     const monthAbbr = getMonthAbbr(monthNum);
     const day = parseInt(date.format('D'));
@@ -36,12 +36,7 @@ export const getStaticProps = async (context: any) => {
     }
 }
 
-const useDate = () => {
-    return dayjs()
-}
-
 const HomePage = ({monthAbbr, day, eventData, descHtml}: {monthAbbr: string, day: number, eventData: any, descHtml: any}) => {
-    const date = useDate();
     return (
         <div className="container">
             <Head>

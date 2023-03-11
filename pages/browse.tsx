@@ -17,17 +17,13 @@ import { getMonthAbbr } from '@/daGlobals';
 import ColorTitle from '@/components/ColorTitle';
 
 export const getStaticProps = async (context: any) => {
-    const date = useDate();
+    const date = dayjs();
     const eventData = await getEventsDay(parseInt(date.format('M')), parseInt(date.format('D')));
     return {
         props: {
             eventData: eventData
         }
     }
-}
-
-const useDate = () => {
-    return dayjs()
 }
 
 export default function HomePage({ eventData }) {
