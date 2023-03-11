@@ -39,7 +39,7 @@ export const getStaticPaths = async () => {
     for (let i = 0; i < allMonthAbbrs.length; i++) {
         const curMonthAbbr = allMonthAbbrs[i];
         const daysInMonth = getDaysInMonth(curMonthAbbr);
-        const monthDays = _.range(1,daysInMonth).map((item: number) => item + 1);
+        const monthDays = _.range(1,daysInMonth)
         const monthPages = monthDays.map((item: number) => {
             return {
                 params: {
