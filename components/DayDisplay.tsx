@@ -32,7 +32,7 @@ const DayDisplay = ({ eventData, monthAbbr, day, isToday, descHtml }: { eventDat
                 On{isToday ? " this day, " : " "}{getFullMonth(monthAbbr)}&nbsp;{String(day)}...
             </p>
 
-            <Grid className="event-grid" justify="center" align="stretch" style={{ paddingBottom: '12px' }}>
+            <Grid className="event-grid" justify="center" align="stretch" style={{ paddingBottom: '12px', maxWidth: '80%', margin: 'auto' }} grow>
                 {eventData.map((curEvent: any, eventIndex: number) => {
                     const curDescHtml = descHtml[eventIndex];
                     return (
@@ -45,7 +45,7 @@ const DayDisplay = ({ eventData, monthAbbr, day, isToday, descHtml }: { eventDat
                                     </Group>
                                 </Card.Section>
                                 <Card.Section withBorder px="xs" py="xs" style={{ paddingTop: '2px', paddingBottom: '5px', flexGrow: 1 }}>
-                                    <ScrollArea h={300} style={{ width: '100%' }}>
+                                    <ScrollArea h={250} style={{ width: '100%' }}>
                                         <EventDescription descHtml={curDescHtml} />
                                     </ScrollArea>
                                 </Card.Section>

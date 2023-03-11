@@ -1,4 +1,4 @@
-import { allMonthAbbrs, getDaysInMonth, getMonthNum } from "@/daGlobals";
+import { allMonthAbbrs, getDaysInMonth, getFullMonth, getMonthNum } from "@/daGlobals";
 import { getEventsDay, getEventsOne, getNumEventsDay } from "@/pages/api/event";
 import Head from "next/head";
 import { remark } from "remark";
@@ -8,6 +8,7 @@ import EventDescription from "@/components/EventDescription";
 import ColorTitle from '@/components/ColorTitle';
 import { Card, Group, ScrollArea, Text } from "@mantine/core";
 import LinkButton from "@/components/LinkButton";
+import Link from "next/link";
 
 export const getStaticProps = async (context: any) => {
     const monthParam = context.params.monthAbbr;
@@ -83,13 +84,13 @@ const EventDetailsPage = ({ monthAbbr, day, dayIndex, curEventData, curDescHtml 
             </Head>
             <main>
                 <h1 className="title">
-                    <ColorTitle />
+                    <Link href="/"><ColorTitle /></Link>
                 </h1>
-                <div>
+                <div style={{ width: '80%', margin: 'auto' }}>
                     <Card withBorder radius="lg" shadow="sm" style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>
                         <Card.Section withBorder inheritPadding py="xs">
                             <Group position="apart" style={{ width: '100%' }}>
-                                <Text size="lg" weight={600}>{curEventData.year}: {curEventData.header}</Text>
+                                <Text size="lg" weight={600}>{getFullMonth(monthAbbr)}&nbsp;{day}, {curEventData.year}: {curEventData.header}</Text>
                                 <Text size="xl">{curEventData.place_icon}</Text>
                             </Group>
                         </Card.Section>
