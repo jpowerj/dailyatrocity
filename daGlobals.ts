@@ -21,7 +21,7 @@ export const getMonthNum = (monthAbbr: string) => {
 export const daysInMonth: {[key:string]: number} = {
     'Jan': 31, 'Feb': 29, 'Mar': 31, 'Apr': 30,
     'May': 31, 'Jun': 30, 'Jul': 31, 'Aug': 31,
-    'Sep': 30, 'Oct': 31, 'Nov': 31, 'Dec': 31,
+    'Sep': 30, 'Oct': 31, 'Nov': 30, 'Dec': 31,
 }
 export const allMonthAbbrs = Object.keys(daysInMonth);
 export const getDaysInMonth = (monthStr: string) => {
