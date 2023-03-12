@@ -25,6 +25,16 @@ const DayDisplay = ({ eventData, monthAbbr, day, isToday, descHtml }: { eventDat
     }
     const { prevDayLabel, prevDayLink } = getPrevDay(monthAbbr, day);
     const { nextDayLabel, nextDayLink } = getNextDay(monthAbbr, day);
+    const genWikiLink = (linkUrl: string) => {
+        return (
+            <span><b>Read More: </b><a href={linkUrl} target="_blank" rel="noopener noreferrer">{linkUrl}</a></span>
+        );
+    };
+    const genSourceLink = (author:string, sourceName: string, sourceInfo: string, linkUrl: string) => {
+        return (
+            <span><b>Source: </b>{(author !== undefined) && `${author}, `}<i><a href={linkUrl} target="_blank" rel="noopener noreferrer">{sourceName}</a></i>{(sourceInfo !== undefined && `, ${sourceInfo}`)}</span>
+        )
+    }
     return (
         <div className="day-container">
             <Header isToday={isToday} />
@@ -50,7 +60,7 @@ const DayDisplay = ({ eventData, monthAbbr, day, isToday, descHtml }: { eventDat
                                     <Group position="apart" style={{ width: '100%' }} noWrap>
                                         <Text size="lg" weight={600}>{curEvent.year}: {curEvent.header}</Text>
                                         <Group className="loc-icons" spacing={3}>
-                                        {curEvent.hasOwnProperty("placeIcon") && curEvent.where.map((curLoc: any, locIndex: number) => (
+                                        {curEvent.hasOwnProperty("place_icon") && curEvent.where.map((curLoc: any, locIndex: number) => (
                                             <Tooltip label={"Location: " + curEvent.where_names[locIndex]} withArrow key={locIndex}>
                                                 <Text size="xl" className="loc-icon">{curEvent.place_icon[locIndex]}</Text>
                                             </Tooltip>
@@ -64,8 +74,15 @@ const DayDisplay = ({ eventData, monthAbbr, day, isToday, descHtml }: { eventDat
                                     </ScrollArea.Autosize>
                                 </Card.Section>
                                 <Card.Section withBorder inheritPadding py="xs">
-                                    <b>Source</b>: {curEvent.source1_author}, <i><a href={curEvent.source1_link} target="_blank" rel="noopener noreferrer">{curEvent.source1_name}</a></i>, {curEvent.source1_info}
+                                    {curEvent.source1_type === "Wikipedia"
+                                    ? genWikiLink(curEvent.source1_link) : genSourceLink(curEvent.source1_author, curEvent.source1_name, curEvent.source1_info, curEvent.source1_link)}
                                 </Card.Section>
+                                {curEvent.hasOwnProperty("source2_type") &&
+                                    <Card.Section withBorder inheritPadding py="xs">
+                                        {curEvent.source2_type === "Wikipedia" ?
+                                            genWikiLink(curEvent.source2_link) : genSourceLink(curEvent.source2_author, curEvent.source2_name, curEvent.source2_info, curEvent.source2_link)}
+                                    </Card.Section>
+                                }
                                 <Card.Section withBorder inheritPadding py="xs">
                                     <LinkButton
                                         isDisabled={false}

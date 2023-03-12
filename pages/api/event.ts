@@ -16,7 +16,7 @@ export async function getEventsDay(month: number, day: number) {
     //console.log("dateFormula: " + dateFormula);
     let results = await atBase(eventTableName).select({
         //fields: chronFields,
-        //sort: [{ field: "entry_id", direction: "asc" }],
+        sort: [{ field: "day_index", direction: "asc" }],
         filterByFormula: dateFormula,
     }).all();
     let resultsFields = results.map((x: any) => x.fields);
