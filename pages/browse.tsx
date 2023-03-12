@@ -32,7 +32,7 @@ export default function HomePage({ eventData }) {
         <div className="browse-container">
             <div className="title-container">
             <Title style={{ paddingBottom: '12px' }}>
-                <Link href="/" style={{ textDecoration: 'none' }}><ColorTitle /></Link>
+                <Link href="/" style={{ textDecoration: 'none' }}><ColorTitle size="h1" order={1} /></Link>
             </Title>
             </div>
             <div className="cal-container">
@@ -56,6 +56,7 @@ export default function HomePage({ eventData }) {
                 eventMouseEnter={function(info) {
                     console.log("mouseenter");
                 }}
+                multiMonthMinWidth={300}
             />
             </div>
         </div>

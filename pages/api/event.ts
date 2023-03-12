@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Airtable from 'airtable';
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
@@ -53,4 +54,23 @@ export async function getEventsOne(month: number, day: number, dayIndex: number)
     let uniqueResult = resultsFields[0];
     //console.log(resultsFields);
     return uniqueResult;
+}
+
+export async function getEventsPerDecade() {
+    //console.log("dateFormula: " + dateFormula);
+    let results = await atBase(eventTableName).select({
+        fields: ['year']
+        //sort: [{ field: "entry_id", direction: "asc" }],
+    }).all();
+    let resultsFields = results.map((x: any) => x.fields);
+    const years = resultsFields.map((data) => data.year);
+    const yearsFiltered = years.filter((curYear) => curYear > 1700);
+    const getDecade = (year: number) => Math.floor(year / 10) * 10;
+    const decadeGroups = _.groupBy(yearsFiltered, getDecade);
+    let decadeCounts = {};
+    _.forEach(decadeGroups, function (value: any[], key: number) {
+        decadeCounts[key] = value.length;
+    });
+    //console.log(decadeCounts);
+    return decadeCounts;
 }

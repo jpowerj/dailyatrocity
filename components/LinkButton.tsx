@@ -15,7 +15,7 @@ const LinkButton = ({ isDisabled, href, buttonOnClick, children, ...props }: { i
                 }
             }}
             disabled={isDisabled}
-            rightIcon={<ExternalLink size="1.125rem" />}
+            rightIcon={<ExternalLink size={18} />}
             {...props}
         >
             {children}

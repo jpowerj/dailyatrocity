@@ -1,24 +1,4 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-main {
-  margin: auto;
-  width: 80%;
-}
-
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
 
 a {
   color: inherit;
@@ -30,6 +10,20 @@ a:hover {
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+main {
+  margin: auto;
+  width: 80%;
+  padding-top: 8px;
 }
 
 img {
@@ -88,18 +82,34 @@ button {
   max-height: 100%;
 }
 
-.title-container {
-  position: sticky;
-}
-
 .cal-container {
   max-height: 80vh;
   flex-grow: 1;
 }
 
-.fc-day:hover {
-  background-color: rgba(97,218,251,0.5);
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+.fc-daygrid-day:hover {
+  background-color: rgba(97, 218, 251, 0.5);
   cursor: pointer;
+}
+
+.title-container {
+  position: sticky;
 }
 
 .title a {
@@ -115,15 +125,51 @@ button {
 
 .title {
   margin: 0 0 1rem;
-  line-height: 1.15;
+  /* line-height: 1.15; */
   font-size: 3.6rem;
 }
 
-.title,
-.description {
+.title-main {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+
+.title-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+  margin-left: 2px;
+  margin-bottom: -2px;
+}
+
+.title-buttons > a:hover {
+  color: black;
+}
+
+.title, .description, .title > h1 {
   text-align: center;
 }
 
+.title-text > a {
+  text-decoration: none;
+}
+
+.title-text > h1, .title-text > a > h1 {
+  font-size: 4rem;
+  line-height: 0.75;
+  display: inline;
+}
 
 .description {
   line-height: 1.5;
@@ -179,4 +225,16 @@ button {
     width: 100%;
     flex-direction: column;
   }
+}
+
+.day-nav {
+  display: inline-block;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  display: flex;
+}
+
+.loc-icon {
+  cursor: default;
 }

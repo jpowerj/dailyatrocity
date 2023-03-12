@@ -39,7 +39,7 @@ export const getStaticPaths = async () => {
     for (let i = 0; i < allMonthAbbrs.length; i++) {
         const curMonthAbbr = allMonthAbbrs[i];
         const daysInMonth = getDaysInMonth(curMonthAbbr);
-        const monthDays = _.range(1,daysInMonth)
+        const monthDays = _.range(1,daysInMonth + 1)
         const monthPages = monthDays.map((item: number) => {
             return {
                 params: {
@@ -50,7 +50,7 @@ export const getStaticPaths = async () => {
         });
         allPages.push(...monthPages);
     }
-    console.log(allPages);
+    //console.log(allPages);
     const returnObj = {
         paths: allPages,
         fallback: false, // can also be true or 'blocking'
@@ -64,7 +64,7 @@ const DayPage = ({ monthAbbr, day, eventData, descHtml }: { monthAbbr: string, d
     return (
         <div className="container">
             <Head>
-                <title>DailyAtrocity.US | {getTitleStr(monthAbbr, day)}</title>
+                <title>{`DailyAtrocity.US | ${getTitleStr(monthAbbr, day)}`}</title>
             </Head>
             <DayDisplay monthAbbr={monthAbbr} day={day} isToday={false} eventData={eventData} descHtml={descHtml} />
         </div>

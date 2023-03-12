@@ -33,9 +33,9 @@ export const getTitleStr = (monthAbbr: string, day: number) => {
     return getFullMonth(monthAbbr) + ' ' + String(day);
 }
 
-export const constructDate = (month: string, day: number) => {
+export const constructDate = (monthAbbr: string, day: number) => {
     // Construct dayJs object
-    const monthNum = getMonthNum(month);
+    const monthNum = getMonthNum(monthAbbr) - 1;
     const dateObj = dayjs(new Date(2023, monthNum, day));
     return dateObj;
 }
@@ -47,4 +47,28 @@ export const fullMonthMap: {[key:string]: string} = {
 }
 export const getFullMonth = (monthAbbr: string) => {
     return fullMonthMap[monthAbbr];
+}
+
+export const getNextDay = (curMonthAbbr: string, curDay: number) => {
+    const dateObj = constructDate(curMonthAbbr, curDay);
+    //console.log("start: " + dateObj.toString());
+    const nextObj = dateObj.add(1, 'day');
+    //console.log("nextObj: " + nextObj.toString());
+    const nextObjMonth = nextObj.format('MMM');
+    const nextObjDay = nextObj.get('D');
+    return {
+        nextDayLabel: getTitleStr(nextObjMonth, nextObjDay),
+        nextDayLink: nextObjMonth + "/" + nextObjDay,
+    }
+}
+
+export const getPrevDay = (curMonthAbbr: string, curDay: number) => {
+    const dateObj = constructDate(curMonthAbbr, curDay);
+    const prevObj = dateObj.subtract(1, 'day');
+    const prevObjMonth = prevObj.format('MMM');
+    const prevObjDay = prevObj.get('D');
+    return {
+        prevDayLabel: getTitleStr(prevObjMonth, prevObjDay),
+        prevDayLink: prevObjMonth + "/" + prevObjDay,
+    }
 }

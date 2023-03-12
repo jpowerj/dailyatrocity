@@ -6,9 +6,11 @@ import html from 'remark-html';
 import _ from 'lodash';
 import EventDescription from "@/components/EventDescription";
 import ColorTitle from '@/components/ColorTitle';
-import { Card, Group, ScrollArea, Text } from "@mantine/core";
+import { ActionIcon, Card, Group, ScrollArea, Text } from "@mantine/core";
 import LinkButton from "@/components/LinkButton";
 import Link from "next/link";
+import { ChartBar, InfoCircle } from "tabler-icons-react";
+import Header from "@/components/Header";
 
 export const getStaticProps = async (context: any) => {
     const monthParam = context.params.monthAbbr;
@@ -63,7 +65,7 @@ export const getStaticPaths = async () => {
         }
         allPages.push(...allMonthPages);
     }
-    console.log(allPages);
+    //console.log(allPages);
     const returnObj = {
         paths: allPages,
         fallback: false, // can also be true or 'blocking'
@@ -83,9 +85,8 @@ const EventDetailsPage = ({ monthAbbr, day, dayIndex, curEventData, curDescHtml 
                 <title>DailyAtrocity.US | Event Details</title>
             </Head>
             <main>
-                <h1 className="title">
-                    <Link href="/"><ColorTitle /></Link>
-                </h1>
+                <div className="day-container">
+                <Header isToday={false} />
                 <div style={{ width: '80%', margin: 'auto' }}>
                     <Card withBorder radius="lg" shadow="sm" style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>
                         <Card.Section withBorder inheritPadding py="xs">
@@ -103,6 +104,7 @@ const EventDetailsPage = ({ monthAbbr, day, dayIndex, curEventData, curDescHtml 
                             <b>Source</b>: {curEventData.source1_author}, <i><a href={curEventData.source1_link} target="_blank" rel="noopener noreferrer">{curEventData.source1_name}</a></i>, {curEventData.source1_info}
                         </Card.Section>
                     </Card>
+                </div>
                 </div>
             </main>
         </div>
