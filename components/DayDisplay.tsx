@@ -38,7 +38,7 @@ const DayDisplay = ({ eventData, monthAbbr, day, isToday, descHtml }: { eventDat
     return (
         <div className="day-container">
             <Header isToday={isToday} />
-            <Paper className="day-nav" pl="sm" pr="sm">
+            <Paper className="day-nav" pl="sm" pr="sm" pb="md">
                 <div style={{ float: 'left', width: '33.33%', textAlign: 'left', alignSelf: 'flex-end' }}>
                     <Link href={`../${prevDayLink}`}>&larr; {prevDayLabel}</Link>
                 </div>

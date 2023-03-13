@@ -66,7 +66,9 @@ const DayPage = ({ monthAbbr, day, eventData, descHtml }: { monthAbbr: string, d
             <Head>
                 <title>{`DailyAtrocity.US | ${getTitleStr(monthAbbr, day)}`}</title>
             </Head>
-            <DayDisplay monthAbbr={monthAbbr} day={day} isToday={false} eventData={eventData} descHtml={descHtml} />
+            <main>
+                <DayDisplay monthAbbr={monthAbbr} day={day} isToday={false} eventData={eventData} descHtml={descHtml} />
+            </main>
         </div>
     );
 }
